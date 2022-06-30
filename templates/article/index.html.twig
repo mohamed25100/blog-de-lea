@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ArticleController!{% endblock %}
+
+{% block body %}
+
+
+<main class="text-center">
+    <h1>dernier article: {{ my_last.titre }}</h1>
+    <p>resumé: {{ my_last.resume }}</p>
+    <p>contenu: {{ my_last.contenu }}</p>
+    <p>date: {{ my_last.date }}</p>
+
+
+    <h2>Liste des articles:</h2>
+    {% for item in article %}
+        <h1><a href="/article/{{item.id}}">{{item.id}}.{{item.titre}}</a></h1>
+    {% endfor %}
+</main>
+
+
+{% endblock %}

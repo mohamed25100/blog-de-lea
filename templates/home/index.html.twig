@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ArticleController!
+{% endblock %}
+
+{% block body %}
+
+
+	<main class="text-center">
+
+		<h1>Présentation du Blog de Léa</h1>
+		<p>
+			Il s'agit ici de compléter l'application que vous avez manipulée pour le QCM de la partie 2 de ce cours (Initiation à Twig et Doctrine ORM). Vous allez compléter cette application pour lui ajouter une interface de gestion des articles avec les fonctionnalités suivantes :
+			<br>
+			Création et édition d'un article (avec sauvegarde en base de données) ;
+			<br>
+			Suppression d'un article ;
+			<br>
+			Visualisation de l'article dans l'interface de gestion.</p>
+
+		<h2>Liste des articles:</h2>
+		{% for item in article %}
+			
+				<h1><a href="/article/{{item.id}}">{{item.id}}.{{item.titre}}</a></h1>
+			
+			<ul class="p-0">
+				<li class="p-0">resumé:
+					{{item.resume}}</li>
+				<li class="p-0">contenu:
+					{{item.contenu}}</li>
+				<li class="p-0">date:
+					{{item.date}}</li>
+			</ul>
+		{% endfor %}
+	</main>
+
+
+{% endblock %}
