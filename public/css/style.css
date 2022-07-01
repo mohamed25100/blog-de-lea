@@ -10,3 +10,6 @@ textarea{
     width: 80vw;
     min-height: 200px;
 }
+button{
+    background-color: #77DD77;
+}

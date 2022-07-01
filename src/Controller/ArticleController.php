@@ -4,9 +4,9 @@ namespace App\Controller;
 
 //use class name Article from database #to use database//
 use App\Entity\Article;
-//edit form
+//edit form create
 use App\Form\ArticleType;
-//end edit form
+//end edit form create
 use Doctrine\Persistence\ManagerRegistry;
 //fin #to use database
 
@@ -43,7 +43,7 @@ class ArticleController extends AbstractController
     }
     
     /**
-     * @Route("/create-article", name="create_article")
+     * @Route("/dev/article/create", name="create_article")
      */
     public function createArticle(ManagerRegistry $doctrine): Response
     {
@@ -100,7 +100,7 @@ class ArticleController extends AbstractController
         ]);
     }
 
-     /**
+    /**
      * @Route("/article/{id}", name="article_show")
      */
     public function show(ManagerRegistry $doctrine, int $id): Response
@@ -121,7 +121,7 @@ class ArticleController extends AbstractController
     }
 
     /**
-     * @Route("/article/edit/{id}")
+     * @Route("/dev/article/edit/{id}")
      */
     public function update(ManagerRegistry $doctrine, int $id): Response
     {
@@ -135,19 +135,20 @@ class ArticleController extends AbstractController
         }
         //here u can edit manualy your data using set:
         //$article->setContenu(my_repeat_5("my first article is cool ! "));
-        //$article->setTitre('New article name!');
+        $article->setTitre('wow article name!');
         $entityManager->flush();
 
         return $this->redirectToRoute('article_show', [
             'id' => $article->getId()
         ]);
     }
-//my_
-        /**
-     * @Route("/article/editme/{id}")
+
+    /**
+     * @Route("/article/edit/{id}")
      */
-    public function updateme(ManagerRegistry $doctrine, int $id): Response
+    public function reNew(Request $request,ManagerRegistry $doctrine, int $id): Response
     {
+        
         $entityManager = $doctrine->getManager();
         $article = $entityManager->getRepository(Article::class)->find($id);
 
@@ -156,16 +157,20 @@ class ArticleController extends AbstractController
                 'No article found for id '.$id
             );
         }
-        //here u can edit manualy your data using set:
-        //$article->setContenu(my_repeat_5("my first article is cool ! "));
-        //$article->setTitre('New article name!');
-        $entityManager->flush();
-
-        return $this->redirectToRoute('article_show', [
-            'id' => $article->getId()
+        $form = $this->createForm(ArticleType::class, $article);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($article);
+            $entityManager->flush();
+            return $this->redirectToRoute('article_show', [
+                'id' => $article->getId()
+            ]);
+        }
+        return $this->render('article/renew.html.twig', [
+            'form' => $form->createView()
         ]);
     }
-//end_my
+    
     /**
      * @Route("/article/delete/{id}")
      */

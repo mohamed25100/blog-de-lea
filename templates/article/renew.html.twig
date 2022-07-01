@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ArticleController!{% endblock %}
+
+{% block body %}
+
+
+<main class="text-center">
+
+{# {{ form_start(form) }}
+    {{ form_row(form.Titre) }}
+    {{ form_row(form.Resume) }}
+    {{ form_row(form.Contenu) }}
+    {{ form_row(form.Date) }}
+
+{{ form_end(form) }} #}
+
+
+    {{ form_start(form) }}
+        <div>
+        {{ form_label(form.Titre) }}<br>
+        {{ form_widget(form.Titre) }}
+        </div>
+        <div>
+        {{ form_label(form.Resume) }}<br>
+        {{ form_widget(form.Resume) }}
+        </div>
+        <div>
+        {{ form_label(form.Contenu) }}<br>
+        {{ form_widget(form.Contenu) }}
+        </div>
+        <div>
+        {{ form_label(form.Date) }}<br>
+        {{ form_widget(form.Date) }}
+        </div>
+        
+        {# <div>{{ form_rest(form) }}</div> #}<br>
+    {{ form_end(form) }}
+
+
+</main>
+
+
+{% endblock %}
