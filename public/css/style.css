@@ -1,3 +1,12 @@
 .flex-wrap-inherit{
     flex-wrap: inherit;
 }
+textarea , input,button{
+    border-radius: 20px 20px;
+    padding: 10px;
+    background-color: wheat;
+}
+textarea{
+    width: 80vw;
+    min-height: 200px;
+}
